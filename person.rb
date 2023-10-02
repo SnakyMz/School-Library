@@ -1,8 +1,11 @@
-class Person
-  attr_reader :id, :name, :age
-  attr_writer :name, :age
+# frozen_string_literal: true
 
-  def initialize(name = "Unknown", age, parent_permission: true)
+# Class containing data about person
+class Person
+  attr_accessor :name, :age
+  attr_reader :id
+
+  def initialize(age, name = 'Unknown', parent_permission: true)
     @id = rand(1..1000)
     @name = name
     @age = age
@@ -10,11 +13,13 @@ class Person
   end
 
   private
+
   def of_age?
     @age >= 18
   end
 
   public
+
   def can_use_services?
     of_age? || @parent_permission
   end
