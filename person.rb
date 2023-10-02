@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 # Class containing data about person
 class Person
   attr_accessor :name, :age
