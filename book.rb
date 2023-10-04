@@ -1,3 +1,5 @@
+require_relative 'rental'
+
 # Class containing data about books
 class Book
   attr_accessor :title, :author
@@ -5,5 +7,9 @@ class Book
   def initialize(title, author)
     @title = title
     @author = author
+    @rental = []
   end
+
+  def add_rental(date, person)
+    Rental.new(date, person, self)
 end

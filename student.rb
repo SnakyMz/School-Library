@@ -13,8 +13,8 @@ class Student < Person
     '¯\(ツ)/¯'
   end
 
-  def assign_classroom(new_classroom)
-    @classroom = new_classroom
-    new_classroom.students.push(self)
+  def classroom=(classroom)
+    @classroom = classroom
+    classroom.add_student(self)
   end
 end
