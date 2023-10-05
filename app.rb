@@ -25,6 +25,7 @@ class App
       print 'Enter your option: '
       option = gets.chomp.to_i
       break if option.eql?(7)
+      
       menu(option)
     end
   end
