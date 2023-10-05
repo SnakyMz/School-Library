@@ -4,7 +4,7 @@ require_relative 'rental'
 # Class containing data about person
 class Person < Nameable
   attr_accessor :name, :age, :rental
-  attr_reader :id, :books_rented
+  attr_reader :id
 
   def initialize(age, name = 'Unknown', parent_permission: true)
     super()
