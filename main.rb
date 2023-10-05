@@ -1,7 +1,7 @@
 require_relative 'app'
 
-
 def menu
+  puts 'Welcome to School Library'
   puts 'Please select an option'
   puts '1 - List all books'
   puts '2 - List all people'
@@ -10,14 +10,13 @@ def menu
   puts '5 - Create a rental'
   puts '6 - List all rentals for a given person id'
   puts '7 - Exit'
+  print 'Enter your option: '
 end
 
 def main
   app = App.new
-  puts 'Welcome to School Library'
   loop do
     menu
-    print 'Enter your option: '
     option = gets.chomp.to_i
     case option
     when 1
