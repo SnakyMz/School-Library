@@ -31,6 +31,8 @@ class App
         list_all_people
       when 3
         create_person
+      when 4
+        create_book
       when 7
         break
       else
@@ -42,7 +44,7 @@ class App
   def list_all_books
     puts "Library is empty" if @books.empty?
     @books.each do |book|
-      puts "#{book.title} - #{book.author}"
+      puts "Book: #{book.title}, Author: #{book.author}"
     end
   end
 
@@ -80,7 +82,7 @@ class App
     name = gets.chomp
     print "Enter student age: "
     age = gets.chomp
-    print "Enter student classroom: "
+    print "Enter student's classroom: "
     classroom = gets.chomp
     print "Enter student's parent permission[Y/N]: "
     parent_permissionpermission = gets.chomp
@@ -95,9 +97,18 @@ class App
     name = gets.chomp
     print "Enter teacher age: "
     age = gets.chomp
-    print "Enter teacher specialization: "
+    print "Enter teacher's specialization: "
     specialization = gets.chomp
     @people << Teacher.new(specialization, age, name)
-    puts "Teacher data submitted successfully"
+    puts "Teacher data added successfully"
+  end
+
+  def create_book
+    print "Enter book's title: "
+    title = gets.chomp
+    print "Enter book's author: "
+    author = gets.chomp
+    @books << Book.new(title, author)
+    puts "Book data added successfully"
   end
 end
