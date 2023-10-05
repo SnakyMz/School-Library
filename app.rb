@@ -43,4 +43,11 @@ class App
       puts "#{book.title} - #{book.author}"
     end
   end
+
+  def list_all_people
+    puts "Library is empty" if @people.empty?
+    @people.each do |person|
+      puts "ID: #{person.id}, Name: #{person.name}, Age: #{person.age}"
+    end
+  end
 end
