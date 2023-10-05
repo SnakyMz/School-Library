@@ -36,4 +36,11 @@ class App
       end 
     end
   end
+
+  def list_all_books
+    puts "Library is empty" if @books.empty?
+    @books.each do |book|
+      puts "#{book.title} - #{book.author}"
+    end
+  end
 end
