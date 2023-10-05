@@ -1,7 +1,7 @@
 require_relative 'book'
-require_relative 'classroom'
 require_relative 'student'
 require_relative 'teacher'
+require_relative 'rental'
 
 # Class containing script for user interface
 class App
@@ -33,6 +33,10 @@ class App
         create_person
       when 4
         create_book
+      when 5
+        create_rental
+      when 6
+        list_rental
       when 7
         break
       else
@@ -43,16 +47,16 @@ class App
 
   def list_all_books
     puts "Library is empty" if @books.empty?
-    @books.each do |book|
-      puts "Book: #{book.title}, Author: #{book.author}"
+    @books.each_with_index do |book, index|
+      puts "#{index+1} - Book: #{book.title}, Author: #{book.author}"
     end
   end
 
   def list_all_people
-    puts "Library is empty" if @people.empty?
-    @people.each do |person|
-      puts "[Student] ID: #{person.id}, Name: #{person.name}, Age: #{person.age}" if person.is_a?(Student)
-      puts "[Teacher] ID: #{person.id}, Name: #{person.name}, Age: #{person.age}" if person.is_a?(Teacher)
+    puts "No person is registered" if @people.empty?
+    @people.each_with_index do |person, index|
+      puts "#{index+1} - [Student] ID: #{person.id}, Name: #{person.name}, Age: #{person.age}" if person.is_a?(Student)
+      puts "#{index+1} - [Teacher] ID: #{person.id}, Name: #{person.name}, Age: #{person.age}" if person.is_a?(Teacher)
     end
   end
 
@@ -85,7 +89,7 @@ class App
     print "Enter student's classroom: "
     classroom = gets.chomp
     print "Enter student's parent permission[Y/N]: "
-    parent_permissionpermission = gets.chomp
+    parent_permission = gets.chomp
     parent_permission = true if parent_permission.eql?('Y' || 'y')
     parent_permission = false if parent_permission.eql?('N' || 'n')
     @people << Student.new(classroom, age, name)
@@ -110,5 +114,33 @@ class App
     author = gets.chomp
     @books << Book.new(title, author)
     puts "Book data added successfully"
+  end
+
+  def create_rental
+    if @books.empty?
+      puts "Please create a book first." 
+    elsif @people.empty?
+      puts "Please create a person first."
+    else 
+      list_all_books
+      print "Enter book's index: "
+      book = gets.chomp.to_i
+      book = @books[book-1]
+      list_all_people
+      print "Enter person's index: "
+      person = gets.chomp.to_i
+      person = @people[person-1]
+      print "Enter date: "
+      date = gets.chomp
+      @rentals << Rental.new(date, person, book)
+      puts "Rental data added successfully"
+    end
+  end
+
+  def list_rental
+    puts "No rentals registered" if @rentals.empty?
+    @rentals.each do |rental|
+      puts "Date: #{rental.date}, Person: #{rental.person.name}, Book: #{rental.book.title}"
+    end
   end
 end
