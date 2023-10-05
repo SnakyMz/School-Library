@@ -11,52 +11,18 @@ class App
     @rentals = []
   end
 
-  def run
-    puts "Welcome to School Library"
-    while true
-      puts "Please select an option"
-      puts "1 - List all books"
-      puts "2 - List all people"
-      puts "3 - Create a person"
-      puts "4 - Create a book"
-      puts "5 - Create a rental"
-      puts "6 - List all rentals for a given person id"
-      puts "7 - Exit"
-      print "Enter your option: "
-      option = gets.chomp.to_i
-      case option
-      when 1
-        list_all_books
-      when 2
-        list_all_people
-      when 3
-        create_person
-      when 4
-        create_book
-      when 5
-        create_rental
-      when 6
-        list_rental
-      when 7
-        break
-      else
-        puts "Invalid option"
-      end 
-    end
-  end
-
   def list_all_books
     puts "Library is empty" if @books.empty?
     @books.each_with_index do |book, index|
-      puts "#{index+1} - Book: #{book.title}, Author: #{book.author}"
+      puts "#{index+1} | Book: #{book.title} | Author: #{book.author}"
     end
   end
 
   def list_all_people
     puts "No person is registered" if @people.empty?
     @people.each_with_index do |person, index|
-      puts "#{index+1} - [Student] ID: #{person.id}, Name: #{person.name}, Age: #{person.age}" if person.is_a?(Student)
-      puts "#{index+1} - [Teacher] ID: #{person.id}, Name: #{person.name}, Age: #{person.age}" if person.is_a?(Teacher)
+      puts "#{index+1} | [Student] ID: #{person.id} | Name: #{person.name} | Age: #{person.age}" if person.is_a?(Student)
+      puts "#{index+1} | [Teacher] ID: #{person.id} | Name: #{person.name} | Age: #{person.age}" if person.is_a?(Teacher)
     end
   end
 
@@ -138,9 +104,16 @@ class App
   end
 
   def list_rental
-    puts "No rentals registered" if @rentals.empty?
-    @rentals.each do |rental|
-      puts "Date: #{rental.date}, Person: #{rental.person.name}, Book: #{rental.book.title}"
+    if @rentals.empty?
+      puts "No rentals registered"
+    else
+      list_all_people
+      print "Enter person's ID: "
+      id = gets.chomp.to_i
+      rents = @rentals.select { |rental| rental.person.id.eql?(id) }
+      rents.each do |rent|
+        puts "Date: #{rent.date} | Person: #{rent.person.name} | Book: #{rent.book.title} by #{rent.book.author}"
+      end
     end
   end
 end
