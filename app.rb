@@ -11,44 +11,6 @@ class App
     @rentals = []
   end
 
-  def run
-    puts 'Welcome to School Library'
-    puts 'Please select an option'
-    puts '1 - List all books'
-    puts '2 - List all people'
-    puts '3 - Create a person'
-    puts '4 - Create a book'
-    puts '5 - Create a rental'
-    puts '6 - List all rentals for a given person id'
-    puts '7 - Exit'
-    print 'Enter your option: '
-    option = gets.chomp.to_i
-    menu(option)
-  end
-
-  def menu(option)
-    loop do
-      case option
-      when 1
-        list_all_books
-      when 2
-        list_all_people
-      when 3
-        create_person
-      when 4
-        create_book
-      when 5
-        create_rental
-      when 6
-        list_rental
-      when 7
-        break
-      else
-        puts 'Invalid option'
-      end
-    end
-  end
-
   def list_all_books
     puts 'Library is empty' if @books.empty?
     @books.each_with_index do |book, index|
