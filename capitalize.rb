@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require_relative 'decorator'
 
 # Class containing method to capitalize name
