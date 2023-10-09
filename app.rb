@@ -54,7 +54,7 @@ class App
     classroom = gets.chomp
     print "Enter student's parent permission[Y/N]: "
     parent_permission = gets.chomp
-    @people << Student.new(classroom, age, name, parent_permission)
+    @people << Student.new(classroom, age, name, parent_permission: parent_permission)
     puts 'Student data submitted successfully'
   end
 
