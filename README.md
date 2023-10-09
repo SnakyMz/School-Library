@@ -124,6 +124,12 @@ You can deploy this project using GitPages:
 - Twitter: [@twitterhandle](https://twitter.com/IsmaMastronardi)
 - LinkedIn: [LinkedIn](https://www.linkedin.com/in/ismael-mastronardi-361873271/)
 
+👤 **Mahram Hossain🔭**
+
+- GitHub: [@Mahram Hossain](https://github.com/mhnazary)
+- Twitter: [@Mahram Hossain](https://twitter.com/mh_nazary)
+- LinkedIn: [LinkedIn](https://www.linkedin.com/in/mh-nazary-515686204/)
+
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 ## 🔭 Future Features <a name="future-features"></a>
