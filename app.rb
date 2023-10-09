@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 require_relative 'book'
 require_relative 'student'
 require_relative 'teacher'
@@ -11,6 +9,25 @@ class App
     @books = []
     @people = []
     @rentals = []
+  end
+
+  def run(option)
+    case option
+    when 1
+      list_all_books
+    when 2
+      list_all_people
+    when 3
+      create_person
+    when 4
+      create_book
+    when 5
+      create_rental
+    when 6
+      list_rental
+    else
+      puts 'Invalid option'
+    end
   end
 
   def list_all_books
