@@ -1,5 +1,15 @@
 require_relative 'app'
 
+def run
+  loop do
+    menu
+    option = gets.chomp.to_i
+    break if option == 7
+
+    options(option)
+  end
+end
+
 def menu
   puts 'Welcome to School Library'
   puts 'Please select an option'
@@ -11,16 +21,6 @@ def menu
   puts '6 - List all rentals for a given person id'
   puts '7 - Exit'
   print 'Enter your option: '
-end
-
-def run
-  loop do
-    menu
-    option = gets.chomp.to_i
-    break if option == 7
-
-    options(option)
-  end
 end
 
 def options(option)
