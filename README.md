@@ -118,6 +118,12 @@ You can deploy this project using GitPages:
 - Twitter: [@SobanSyeed](https://twitter.com/SobanSyeed)
 - LinkedIn: [Soban Syeed](https://www.linkedin.com/in/soban-syeed-82985b241/)
 
+👤 **Ismael Mastronardi**
+
+- GitHub: [@githubhandle](https://github.com/IsmaelMastronardi)
+- Twitter: [@twitterhandle](https://twitter.com/IsmaMastronardi)
+- LinkedIn: [LinkedIn](https://www.linkedin.com/in/ismael-mastronardi-361873271/)
+
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 ## 🔭 Future Features <a name="future-features"></a>
