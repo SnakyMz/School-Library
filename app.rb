@@ -56,9 +56,11 @@ class App
     person_option = gets.chomp.to_i
     case person_option
     when 1
-      create_student
+      @people << create_student
+      puts 'Student data submitted successfully'
     when 2
-      create_teacher
+      @people << create_teacher
+      puts 'Teacher data added successfully'
     else
       puts 'Invalid option'
     end
@@ -73,8 +75,7 @@ class App
     classroom = gets.chomp
     print "Enter student's parent permission[Y/N]: "
     parent_permission = gets.chomp
-    @people << Student.new(classroom, age, name, parent_permission: parent_permission)
-    puts 'Student data submitted successfully'
+    Student.new(classroom, age, name, parent_permission: parent_permission)
   end
 
   def create_teacher
@@ -84,8 +85,7 @@ class App
     age = gets.chomp
     print "Enter teacher's specialization: "
     specialization = gets.chomp
-    @people << Teacher.new(specialization, age, name)
-    puts 'Teacher data added successfully'
+    Teacher.new(specialization, age, name)
   end
 
   def create_book
