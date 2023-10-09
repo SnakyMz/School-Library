@@ -1,4 +1,5 @@
 require_relative 'app'
+require_relative 'validate_input'
 
 def menu
   puts 'Please select an option'
@@ -17,7 +18,7 @@ def main
   puts 'Welcome to School Library'
   loop do
     menu
-    option = gets.chomp.to_i
+    option = user_input('int')
     break if option == 7
 
     app.run(option)

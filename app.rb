@@ -2,6 +2,7 @@ require_relative 'book'
 require_relative 'student'
 require_relative 'teacher'
 require_relative 'rental'
+require_relative 'validate_input'
 
 # Class containing script for user interface
 class App
@@ -53,7 +54,7 @@ class App
     puts '1 - Create a student'
     puts '2 - Create a Teacher'
     print 'Enter your option: '
-    person_option = gets.chomp.to_i
+    person_option = user_input('int')
     case person_option
     when 1
       @people << create_student
@@ -68,31 +69,31 @@ class App
 
   def create_student
     print 'Enter student name: '
-    name = gets.chomp
+    name = user_input('str')
     print 'Enter student age: '
-    age = gets.chomp
+    age = user_input('str')
     print "Enter student's classroom: "
-    classroom = gets.chomp
+    classroom = user_input('str')
     print "Enter student's parent permission[Y/N]: "
-    parent_permission = gets.chomp
+    parent_permission = user_input('str')
     Student.new(classroom, age, name, parent_permission: parent_permission)
   end
 
   def create_teacher
     print 'Enter teacher name: '
-    name = gets.chomp
+    name = user_input('str')
     print 'Enter teacher age: '
-    age = gets.chomp
+    age = user_input('str')
     print "Enter teacher's specialization: "
-    specialization = gets.chomp
+    specialization = user_input('str')
     Teacher.new(specialization, age, name)
   end
 
   def create_book
     print "Enter book's title: "
-    title = gets.chomp
+    title = user_input('str')
     print "Enter book's author: "
-    author = gets.chomp
+    author = user_input('str')
     @books << Book.new(title, author)
     puts 'Book data added successfully'
   end
@@ -105,14 +106,14 @@ class App
     else
       list_all_books
       print "Enter book's index: "
-      book = gets.chomp.to_i
+      book = user_input('int')
       book = @books[book - 1]
       list_all_people
       print "Enter person's index: "
-      person = gets.chomp.to_i
+      person = user_input('int')
       person = @people[person - 1]
       print 'Enter date: '
-      date = gets.chomp
+      date = user_input('str')
       @rentals << Rental.new(date, person, book)
       puts 'Rental data added successfully'
     end
@@ -124,7 +125,7 @@ class App
     else
       list_all_people
       print "Enter person's ID: "
-      id = gets.chomp.to_i
+      id = user_input('int')
       rents = @rentals.select { |rental| rental.person.id.eql?(id) }
       rents.each do |rent|
         puts "Date: #{rent.date} | Person: #{rent.person.name} | Book: #{rent.book.title} by #{rent.book.author}"
