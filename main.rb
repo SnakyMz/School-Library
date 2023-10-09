@@ -24,7 +24,7 @@ def run
 end
 
 def options(option)
-  app = App.new()
+  app = App.new
   case option
   when 1
     app.list_all_books
