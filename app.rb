@@ -34,14 +34,11 @@ class App
     end
   end
 
-  def load_books
-  end
+  def load_books; end
 
-  def load_people
-  end
+  def load_people; end
 
-  def load_rentals
-  end
+  def load_rentals; end
 
   def list_all_books
     puts 'Library is empty' if @books.empty?
@@ -146,5 +143,31 @@ class App
   end
 
   def exit_app
+    books = []
+    @books.each do |book|
+      books << { title: book.title, author: book.author }
+    end
+    books_json = JSON.generate(books)
+    booksfile = File.write('books.json', books_json)
+
+    people = []
+    @people.each do |person|
+      if person.is_a?(Student)
+        people << { class: 'student', classroom: person.classroom.label, age: person.age, name: person.name }
+      elsif person.is_a?(Teacher)
+        people << { class: 'teacher', specialization: person.specialization, age: person.age, name: person.name }
+      end
+    end
+    people_json = JSON.generate(people)
+    peoplefile = File.write('people.json', people_json)
+
+    rentals = []
+    @rentals.each do |rental|
+      rentals << { date: rental.date, person: rental.person, book: rental.book }
+    end
+    rentals_json = JSON.generate(rentals)
+    rentalsfile = File.write('rentals.json', rentals_json)
+
+    puts 'Thanks for using our app'
   end
 end
