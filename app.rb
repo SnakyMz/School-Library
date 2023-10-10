@@ -136,12 +136,21 @@ class App
   end
 
   def exit_app
+    store_books
+    store_people
+    store_rentals
+  end
+  
+  def store_books
     books = []
     @books.each do |book|
       books << { title: book.title, author: book.author }
     end
     books_json = JSON.generate(books)
     File.write('books.json', books_json)
+  end
+
+  def store_people
     people = []
     @people.each do |person|
       if person.is_a?(Student)
@@ -154,6 +163,9 @@ class App
     end
     people_json = JSON.generate(people)
     File.write('people.json', people_json)
+  end
+
+  def store_rentals
     rentals = []
     @rentals.each do |rental|
       rentals << { date: rental.date, person: rental.person.id, book: rental.book.title }
