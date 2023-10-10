@@ -19,8 +19,6 @@ def main
   loop do
     menu
     option = user_input('int')
-    break if option == 7
-
     app.run(option)
   end
   puts 'Thanks for using our app'

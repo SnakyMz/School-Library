@@ -7,9 +7,9 @@ require_relative 'validate_input'
 # Class containing script for user interface
 class App
   def initialize
-    @books = []
-    @people = []
-    @rentals = []
+    @books = load_books
+    @people = load_people
+    @rentals = load_rentals
   end
 
   def run(option)
@@ -26,9 +26,21 @@ class App
       create_rental
     when 6
       list_rental
+    when 7
+      exit_app
+      exit
     else
       puts 'Invalid option'
     end
+  end
+
+  def load_books
+  end
+
+  def load_people
+  end
+
+  def load_rentals
   end
 
   def list_all_books
@@ -131,5 +143,8 @@ class App
         puts "Date: #{rent.date} | Person: #{rent.person.name} | Book: #{rent.book.title} by #{rent.book.author}"
       end
     end
+  end
+
+  def exit_app
   end
 end
