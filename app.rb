@@ -4,6 +4,7 @@ require_relative 'teacher'
 require_relative 'rental'
 require_relative 'validate_input'
 require_relative 'loaddata'
+require_relative 'storedata'
 require 'json'
 
 # Class containing script for user interface
@@ -136,41 +137,8 @@ class App
   end
 
   def exit_app
-    store_books
-    store_people
-    store_rentals
-  end
-  
-  def store_books
-    books = []
-    @books.each do |book|
-      books << { title: book.title, author: book.author }
-    end
-    books_json = JSON.generate(books)
-    File.write('books.json', books_json)
-  end
-
-  def store_people
-    people = []
-    @people.each do |person|
-      if person.is_a?(Student)
-        people << { class: 'student', classroom: person.classroom.label, age: person.age, name: person.name,
-                    id: person.id, parent_permission: person.parent_permission }
-      elsif person.is_a?(Teacher)
-        people << { class: 'teacher', specialization: person.specialization, age: person.age, name: person.name,
-                    id: person.id }
-      end
-    end
-    people_json = JSON.generate(people)
-    File.write('people.json', people_json)
-  end
-
-  def store_rentals
-    rentals = []
-    @rentals.each do |rental|
-      rentals << { date: rental.date, person: rental.person.id, book: rental.book.title }
-    end
-    rentals_json = JSON.generate(rentals)
-    File.write('rentals.json', rentals_json)
+    store_books(@books)
+    store_people(@people)
+    store_rentals(@rentals)
   end
 end
