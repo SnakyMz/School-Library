@@ -67,8 +67,8 @@ class App
     rentalsdata = File.read("rentals.json")
     rentalsarray = JSON.parse(rentalsdata)
     rentalsarray.each do |rental|
-      person_name = rental['person']
-      person = @people.select { |per| per.name.eql?(person_name) }
+      person_id = rental['person']
+      person = @people.select { |per| per.id.eql?(person_id) }
       book_title = rental['book']
       book = @books.select { |bk| bk.title.eql?(book_title) }
       rentals << Rental.new(rental['date'], person[0], book[0])
@@ -199,7 +199,7 @@ class App
 
     rentals = []
     @rentals.each do |rental|
-      rentals << { date: rental.date, person: rental.person.name, book: rental.book.title }
+      rentals << { date: rental.date, person: rental.person.id, book: rental.book.title }
     end
     rentals_json = JSON.generate(rentals)
     rentalsfile = File.write('rentals.json', rentals_json)
