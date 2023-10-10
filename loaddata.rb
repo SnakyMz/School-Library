@@ -1,6 +1,5 @@
 def load_books
   books = []
-  
   return books if File.empty?('books.json')
 
   booksdata = File.read('books.json')

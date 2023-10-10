@@ -28,9 +28,6 @@ class App
       create_rental
     when 6
       list_rental
-    when 7
-      exit_app
-      exit
     else
       puts 'Invalid option'
     end
@@ -145,7 +142,6 @@ class App
     end
     books_json = JSON.generate(books)
     File.write('books.json', books_json)
-
     people = []
     @people.each do |person|
       if person.is_a?(Student)
@@ -158,14 +154,11 @@ class App
     end
     people_json = JSON.generate(people)
     File.write('people.json', people_json)
-
     rentals = []
     @rentals.each do |rental|
       rentals << { date: rental.date, person: rental.person.id, book: rental.book.title }
     end
     rentals_json = JSON.generate(rentals)
     File.write('rentals.json', rentals_json)
-
-    puts 'Thanks for using our app'
   end
 end
