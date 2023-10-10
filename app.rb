@@ -144,7 +144,7 @@ class App
       books << { title: book.title, author: book.author }
     end
     books_json = JSON.generate(books)
-    booksfile = File.write('books.json', books_json)
+    File.write('books.json', books_json)
 
     people = []
     @people.each do |person|
@@ -157,14 +157,14 @@ class App
       end
     end
     people_json = JSON.generate(people)
-    peoplefile = File.write('people.json', people_json)
+    File.write('people.json', people_json)
 
     rentals = []
     @rentals.each do |rental|
       rentals << { date: rental.date, person: rental.person.id, book: rental.book.title }
     end
     rentals_json = JSON.generate(rentals)
-    rentalsfile = File.write('rentals.json', rentals_json)
+    File.write('rentals.json', rentals_json)
 
     puts 'Thanks for using our app'
   end
