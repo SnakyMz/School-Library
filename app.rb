@@ -53,9 +53,9 @@ class App
     peoplearray = JSON.parse(peopledata)
     peoplearray.each do |person|
       if person['class'] == 'student'
-        people << Student.new(person['classroom'], person['age'], person['name'], parent_permission:person['parent_permission'])
+        people << Student.new(person['classroom'], person['age'], person['name'], person['id'], parent_permission: person['parent_permission'])
       elsif person['class'] == 'teacher'
-        people << Teacher.new(person['specialization'], person['age'], person['name'])
+        people << Teacher.new(person['specialization'], person['age'], person['name'], person['id'])
       end
     end
     people
@@ -67,7 +67,11 @@ class App
     rentalsdata = File.read("rentals.json")
     rentalsarray = JSON.parse(rentalsdata)
     rentalsarray.each do |rental|
-      rentals << Rental.new(rental['date'], rental['person'], rental['book'])
+      person_name = rental['person']
+      person = @people.select { |per| per.name.eql?(person_name) }
+      book_title = rental['book']
+      book = @books.select { |bk| bk.title.eql?(book_title) }
+      rentals << Rental.new(rental['date'], person[0], book[0])
     end
     rentals
   end
@@ -185,9 +189,9 @@ class App
     people = []
     @people.each do |person|
       if person.is_a?(Student)
-        people << { class: 'student', classroom: person.classroom.label, age: person.age, name: person.name, parent_permission: person.parent_permission }
+        people << { class: 'student', classroom: person.classroom.label, age: person.age, name: person.name, id: person.id, parent_permission: person.parent_permission }
       elsif person.is_a?(Teacher)
-        people << { class: 'teacher', specialization: person.specialization, age: person.age, name: person.name }
+        people << { class: 'teacher', specialization: person.specialization, age: person.age, name: person.name, id: person.id }
       end
     end
     people_json = JSON.generate(people)
@@ -195,7 +199,7 @@ class App
 
     rentals = []
     @rentals.each do |rental|
-      rentals << { date: rental.date, person: rental.person, book: rental.book }
+      rentals << { date: rental.date, person: rental.person.name, book: rental.book.title }
     end
     rentals_json = JSON.generate(rentals)
     rentalsfile = File.write('rentals.json', rentals_json)
