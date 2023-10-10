@@ -3,13 +3,16 @@ require_relative 'student'
 require_relative 'teacher'
 require_relative 'rental'
 require_relative 'validate_input'
+require_relative 'loaddata'
+require_relative 'storedata'
+require 'json'
 
 # Class containing script for user interface
 class App
   def initialize
-    @books = []
-    @people = []
-    @rentals = []
+    @books = load_books
+    @people = load_people
+    @rentals = load_rentals
   end
 
   def run(option)
@@ -131,5 +134,11 @@ class App
         puts "Date: #{rent.date} | Person: #{rent.person.name} | Book: #{rent.book.title} by #{rent.book.author}"
       end
     end
+  end
+
+  def exit_app
+    store_books(@books)
+    store_people(@people)
+    store_rentals(@rentals)
   end
 end
