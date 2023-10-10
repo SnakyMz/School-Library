@@ -1,6 +1,7 @@
 def load_books
   books = []
-  return books if File.read('books.json').empty?
+  
+  return books if File.empty?('books.json')
 
   booksdata = File.read('books.json')
   bookarray = JSON.parse(booksdata)
@@ -12,7 +13,7 @@ end
 
 def load_people
   people = []
-  return people if File.read('people.json').empty?
+  return people if File.empty?('people.json')
 
   peopledata = File.read('people.json')
   peoplearray = JSON.parse(peopledata)
@@ -29,7 +30,7 @@ end
 
 def load_rentals
   rentals = []
-  return rentals if File.read('rentals.json').empty?
+  return rentals if File.empty?('rentals.json')
 
   rentalsdata = File.read('rentals.json')
   rentalsarray = JSON.parse(rentalsdata)
