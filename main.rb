@@ -21,7 +21,6 @@ def main
     option = user_input('int')
     app.run(option)
   end
-  puts 'Thanks for using our app'
 end
 
 main

@@ -3,6 +3,7 @@ require_relative 'student'
 require_relative 'teacher'
 require_relative 'rental'
 require_relative 'validate_input'
+require 'json'
 
 # Class containing script for user interface
 class App
@@ -35,46 +36,40 @@ class App
   end
 
   def load_books
-    def load_books
-      books = []
-      return books unless File.read("people.json") != ''
-      booksdata = File.read("books.json")
-      bookarray = JSON.parse(booksdata)
-      bookarray.each do |book|
-        books << Book.new(book['title'], book['author'])
-      end
-      books
+    books = []
+    return books unless File.read("people.json") != ''
+    booksdata = File.read("books.json")
+    bookarray = JSON.parse(booksdata)
+    bookarray.each do |book|
+      books << Book.new(book['title'], book['author'])
     end
+    books
   end
 
   def load_people
-    def load_people
-      people = []
-      return people unless File.read("people.json") != ''
-      peopledata = File.read("people.json")
-      peoplearray = JSON.parse(peopledata)
-      peoplearray.each do |person|
-        if person['class'] == 'student'
-          people << Student.new(person['classroom'], person['age'], person['name'])
-        elsif person['class'] == 'teacher'
-          people << Teacher.new(person['specialization'], person['age'], person['name'])
-        end
+    people = []
+    return people unless File.read("people.json") != ''
+    peopledata = File.read("people.json")
+    peoplearray = JSON.parse(peopledata)
+    peoplearray.each do |person|
+      if person['class'] == 'student'
+        people << Student.new(person['classroom'], person['age'], person['name'], parent_permission:person['parent_permission'])
+      elsif person['class'] == 'teacher'
+        people << Teacher.new(person['specialization'], person['age'], person['name'])
       end
-      people
     end
+    people
   end
 
   def load_rentals
-    def load_rentals
-      rentals = []
-      return rentals unless File.read("rentals.json") != ''
-      rentalsdata = File.read("rentals.json")
-      rentalsarray = JSON.parse(rentalsdata)
-      rentalsarray.each do |rental|
-        rentals << Rental.new(rental['date'], rental['person'], rental['book'])
-      end
-      rentals
+    rentals = []
+    return rentals unless File.read("rentals.json") != ''
+    rentalsdata = File.read("rentals.json")
+    rentalsarray = JSON.parse(rentalsdata)
+    rentalsarray.each do |rental|
+      rentals << Rental.new(rental['date'], rental['person'], rental['book'])
     end
+    rentals
   end
 
   def list_all_books
@@ -190,7 +185,7 @@ class App
     people = []
     @people.each do |person|
       if person.is_a?(Student)
-        people << { class: 'student', classroom: person.classroom.label, age: person.age, name: person.name }
+        people << { class: 'student', classroom: person.classroom.label, age: person.age, name: person.name, parent_permission: person.parent_permission }
       elsif person.is_a?(Teacher)
         people << { class: 'teacher', specialization: person.specialization, age: person.age, name: person.name }
       end
