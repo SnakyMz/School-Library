@@ -149,9 +149,11 @@ class App
     people = []
     @people.each do |person|
       if person.is_a?(Student)
-        people << { class: 'student', classroom: person.classroom.label, age: person.age, name: person.name, id: person.id, parent_permission: person.parent_permission }
+        people << { class: 'student', classroom: person.classroom.label, age: person.age, name: person.name,
+                    id: person.id, parent_permission: person.parent_permission }
       elsif person.is_a?(Teacher)
-        people << { class: 'teacher', specialization: person.specialization, age: person.age, name: person.name, id: person.id }
+        people << { class: 'teacher', specialization: person.specialization, age: person.age, name: person.name,
+                    id: person.id }
       end
     end
     people_json = JSON.generate(people)

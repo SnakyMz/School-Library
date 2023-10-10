@@ -1,7 +1,8 @@
 def load_books
   books = []
-  return books unless File.read("people.json") != ''
-  booksdata = File.read("books.json")
+  return books unless File.read('people.json') != ''
+
+  booksdata = File.read('books.json')
   bookarray = JSON.parse(booksdata)
   bookarray.each do |book|
     books << Book.new(book['title'], book['author'])
@@ -11,8 +12,9 @@ end
 
 def load_people
   people = []
-  return people unless File.read("people.json") != ''
-  peopledata = File.read("people.json")
+  return people unless File.read('people.json') != ''
+
+  peopledata = File.read('people.json')
   peoplearray = JSON.parse(peopledata)
   peoplearray.each do |person|
     if person['class'] == 'student'
@@ -26,8 +28,9 @@ end
 
 def load_rentals
   rentals = []
-  return rentals unless File.read("rentals.json") != ''
-  rentalsdata = File.read("rentals.json")
+  return rentals unless File.read('rentals.json') != ''
+
+  rentalsdata = File.read('rentals.json')
   rentalsarray = JSON.parse(rentalsdata)
   rentalsarray.each do |rental|
     rentals << Rental.new(rental['date'], rental['person'], rental['book'])
