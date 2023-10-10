@@ -136,11 +136,9 @@ class App
   end
 
   def exit_app
-    store_books
-    store_people
-    store_rentals
+    store_books; store_people; store_rentals
   end
-  
+
   def store_books
     books = []
     @books.each do |book|
