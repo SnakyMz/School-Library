@@ -1,7 +1,7 @@
 require './book'
 require './person'
 
-describe  Book do
+describe Book do
   context 'When testing the Book class' do
     before(:each) do
       @book1 = Book.new 'stormligth', 'brandon'
