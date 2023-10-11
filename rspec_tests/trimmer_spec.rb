@@ -1,15 +1,15 @@
 require './trimmer'
-require './student'
+require './person'
 
-describe Student do
+describe TrimmerDecorator do
   context 'When testing student class' do
     before(:all) do
-      @student = Student.new 'Web development', 24, 'verylongname', parent_permission: true
+      @person = Person.new 22, 'maximilianus'
     end
 
     it 'Check correct_name' do
-      trimmer = TrimmerDecorator.new(@student)
-      expect(trimmer.correct_name).to eql('verylongna')
+      trimmer = TrimmerDecorator.new(@person)
+      expect(trimmer.correct_name).to eql('maximilian')
     end
   end
 end

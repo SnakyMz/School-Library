@@ -1,15 +1,15 @@
 require './capitalize'
-require './student'
+require './person'
 
-describe Student do
+describe CapitalizeDecorator do
   context 'When testing student class' do
     before(:all) do
-      @student = Student.new 'Web development', 24, 'verylongname', parent_permission: true
+      @person = Person.new 22, 'maximilianus'
     end
 
     it 'Check correct_name' do
-      capitalize = CapitalizeDecorator.new(@student)
-      expect(capitalize.correct_name).to eql('Verylongname')
+      capitalizer = CapitalizeDecorator.new(@person)
+      expect(capitalizer.correct_name).to eql('Maximilianus')
     end
   end
 end
